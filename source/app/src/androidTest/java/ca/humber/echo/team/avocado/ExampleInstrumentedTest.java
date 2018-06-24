@@ -1,4 +1,4 @@
-package ca.humber.eacho.team.avocado;
+package ca.humber.echo.team.avocado;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("ca.humber.eacho.team.avocado", appContext.getPackageName());
+        assertEquals("ca.humber.echo.team.avocado", appContext.getPackageName());
     }
 }

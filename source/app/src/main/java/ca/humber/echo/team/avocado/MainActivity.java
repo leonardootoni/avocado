@@ -1,4 +1,4 @@
-package ca.humber.eacho.team.avocado;
+package ca.humber.echo.team.avocado;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
