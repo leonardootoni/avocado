@@ -3,6 +3,8 @@
     <string name="app_name">avocado</string>
 
     <!-- Notifications Use Case Strings goes here -->
+    <string name="notifications">Notifications</string>
 
     <!-- Expenses Entry Use Case Strings goes here -->
+    <string name="expenses_entry">Expenses Entry</string>
 </resources>

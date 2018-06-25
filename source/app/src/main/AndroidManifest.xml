@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".notifications.NotificationsActivity" />
-        <activity android:name=".expenses.entry.ExpensesEntryActivity"></activity>
+        <activity android:name=".notifications.NotificationsActivity" android:label="@string/notifications"/>
+        <activity android:name=".expenses.entry.ExpensesEntryActivity" android:label="@string/expenses_entry"></activity>
     </application>
 
 </manifest>
