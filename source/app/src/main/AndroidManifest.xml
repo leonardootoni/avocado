@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".notifications.NotificationsActivity" android:label="@string/notifications"/>
-        <activity android:name=".expenses.entry.ExpensesEntryActivity" android:label="@string/expenses_entry"></activity>
+        <activity android:name=".activities.NotificationsActivity" android:label="@string/notifications"/>
+        <activity android:name=".activities.ExpensesEntryActivity" android:label="@string/expenses_entry"></activity>
     </application>
 
 </manifest>

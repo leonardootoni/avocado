@@ -1,15 +1,15 @@
-package ca.humber.echo.team.avocado.expenses.entry;
+package ca.humber.echo.team.avocado.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import ca.humber.echo.team.avocado.R;
 
-public class ExpensesEntryActivity extends AppCompatActivity {
+public class NotificationsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expenses_entry);
+        setContentView(R.layout.activity_notifications);
     }
 }
