@@ -1,13 +1,20 @@
-package ca.humber.echo.team.avocado.repository.entities;
+package ca.humber.echo.team.avocado.repository.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+import java.time.LocalDateTime;
 import java.util.Date;
+
+import ca.humber.echo.team.avocado.utils.Converter;
 
 /**
  * Entity Java Bean class
@@ -15,17 +22,19 @@ import java.util.Date;
 @Entity(tableName = "EXPENSE",
         foreignKeys = {@ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "category_id"),
                        @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "subcategory_id")},
-        indices = {@Index(name = "IDX_EXPENSE_DATE", value = {"date"})})
+        indices = { @Index(name = "IDX_EXPENSE_DATE", value = {"date"}),
+                    @Index(name = "IDX_FK_EXPENSE_CATEGORY_ID", value = {"category_id"}),
+                    @Index(name = "IDX_FK_EXPENSE_SUBCATEGORY_ID", value = {"subcategory_id"})})
 public class Expense {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    private Long id;
+    private long id;
 
     @NonNull
     @ColumnInfo(name = "value")
-    private Double value;
+    private double value;
 
     @NonNull
     @ColumnInfo(name = "description")
@@ -33,17 +42,18 @@ public class Expense {
 
     @NonNull
     @ColumnInfo(name = "date")
+
     private Date date;
 
     @NonNull
     @ColumnInfo(name = "category_id")
-    private Long categoryId;
+    private long categoryId;
 
     @NonNull
     @ColumnInfo(name = "subcategory_id")
-    private Long subcategoryId;
+    private long subcategoryId;
 
-    public Expense(Long id, Double value, String description, Date date, Long categoryId, Long subcategoryId) {
+    public Expense(@NonNull long id, @NonNull double value, @NonNull String description, @NonNull Date date, @NonNull long categoryId, @NonNull long subcategoryId) {
         this.id = id;
         this.value = value;
         this.description = description;
@@ -53,12 +63,12 @@ public class Expense {
     }
 
     @NonNull
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
     @NonNull
-    public Double getValue() {
+    public double getValue() {
         return value;
     }
 
@@ -68,17 +78,27 @@ public class Expense {
     }
 
     @NonNull
-    public Date getDate() {
-        return date;
-    }
+    public Date getDate() { return date; }
 
     @NonNull
-    public Long getCategoryId() {
+    public long getCategoryId() {
         return categoryId;
     }
 
     @NonNull
-    public Long getSubcategoryId() {
+    public long getSubcategoryId() {
         return subcategoryId;
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "id=" + id +
+                ", value=" + value +
+                ", description='" + description + '\'' +
+                ", dateTime=" + date +
+                ", categoryId=" + categoryId +
+                ", subcategoryId=" + subcategoryId +
+                '}';
     }
 }
