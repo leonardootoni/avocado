@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import ca.humber.echo.team.avocado.R;
-import ca.humber.echo.team.avocado.repository.database.AvocadoDataBase;
+import ca.humber.echo.team.avocado.repository.database.AppDataBase;
 import ca.humber.echo.team.avocado.repository.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         String message = "";
         try{
-            User user = AvocadoDataBase.getInstance(this).userDAO().getUserByEmail("leo@leo.com");
+            User user = AppDataBase.getInstance(this).userDAO().getUserByEmail("leo@leo.com");
             message = user.getLastName();
         }catch(Exception ex){
             message = ex.getMessage();
