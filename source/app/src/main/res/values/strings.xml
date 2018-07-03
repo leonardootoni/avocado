@@ -6,5 +6,11 @@
     <string name="notifications">Notifications</string>
 
     <!-- Expenses Entry Use Case Strings goes here -->
-    <string name="expenses_entry">Expenses Entry</string>
+    <string name="exp_entry_title">New Entry</string>
+    <string name="exp_entry_hint_insert_text">write here a description</string>
+    <string name="exp_entry_cancel_button">Cancel</string>
+    <string name="exp_entry_save_button">Save</string>
+    <string name="exp_entry_hint_value">$ 0.00</string>
+    <string name="exp_entry_success_saving_msg">Expense successfully saved.</string>
+    <string name="exp_entry_error_saving_msg">Unexpected error trying to save the expense. Check the data.</string>
 </resources>
