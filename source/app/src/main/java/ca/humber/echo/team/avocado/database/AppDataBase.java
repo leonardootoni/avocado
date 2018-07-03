@@ -1,18 +1,23 @@
 package ca.humber.echo.team.avocado.database;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
+import java.util.concurrent.Executors;
+
+import ca.humber.echo.team.avocado.database.InitialData.CategoryBaseData;
+import ca.humber.echo.team.avocado.database.dao.CategoryDao;
+import ca.humber.echo.team.avocado.database.dao.UserDao;
 import ca.humber.echo.team.avocado.database.utils.Converter;
-import ca.humber.echo.team.avocado.database.dao.AccountSettingsDAO;
-import ca.humber.echo.team.avocado.database.dao.BudgetDAO;
-import ca.humber.echo.team.avocado.database.dao.CategoryDAO;
-import ca.humber.echo.team.avocado.database.dao.ExpenseDAO;
-import ca.humber.echo.team.avocado.database.dao.UserDAO;
+import ca.humber.echo.team.avocado.database.dao.AccountSettingsDao;
+import ca.humber.echo.team.avocado.database.dao.BudgetDao;
+import ca.humber.echo.team.avocado.database.dao.ExpenseDao;
 import ca.humber.echo.team.avocado.database.Entity.AccountSettings;
 import ca.humber.echo.team.avocado.database.Entity.Budget;
 import ca.humber.echo.team.avocado.database.Entity.Category;
@@ -45,6 +50,19 @@ public abstract class AppDataBase extends RoomDatabase {
 
                     instance = Room.databaseBuilder(context.getApplicationContext(),
                             AppDataBase.class, "avocado-database")
+                            .addCallback(new Callback() {
+                                @Override
+                                public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                                    super.onCreate(db);
+                                    Executors.newSingleThreadExecutor().execute(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            //load the base Categories and Sub-Categories after the database creation
+                                            instance.categoryDAO().insertAll(new CategoryBaseData().getAllCategoryBaseData());
+                                        }
+                                    });
+                                }
+                            })
                             .build();
                     // .allowMainThreadQueries()
                 }
@@ -59,9 +77,9 @@ public abstract class AppDataBase extends RoomDatabase {
         instance = null;
     }
 
-    public abstract AccountSettingsDAO accountSettingsDAO();
-    public abstract BudgetDAO budgetDAO();
-    public abstract CategoryDAO categoryDAO();
-    public abstract ExpenseDAO expenseDAO();
-    public abstract UserDAO userDAO();
+    public abstract AccountSettingsDao accountSettingsDAO();
+    public abstract BudgetDao budgetDAO();
+    public abstract CategoryDao categoryDAO();
+    public abstract ExpenseDao expenseDAO();
+    public abstract UserDao userDAO();
 }

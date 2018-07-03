@@ -1,11 +1,16 @@
 package ca.humber.echo.team.avocado.repository;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+import java.util.List;
+
 import ca.humber.echo.team.avocado.database.AppDataBase;
+import ca.humber.echo.team.avocado.database.Entity.Category;
 import ca.humber.echo.team.avocado.database.Entity.Expense;
-import ca.humber.echo.team.avocado.database.dao.ExpenseDAO;
+import ca.humber.echo.team.avocado.database.dao.CategoryDao;
+import ca.humber.echo.team.avocado.database.dao.ExpenseDao;
 
 /**
  * Class that abstract access to multiple datasources and handle data operations.
@@ -17,15 +22,23 @@ import ca.humber.echo.team.avocado.database.dao.ExpenseDAO;
  */
 public class ExpenseRepository {
 
-    private ExpenseDAO expenseDAO;
+    private ExpenseDao expenseDAO;
+    private CategoryDao categoryDAO;
 
     public ExpenseRepository(Application application){
         AppDataBase appDataBase = AppDataBase.getInstance(application);
         expenseDAO = appDataBase.expenseDAO();
+        categoryDAO = appDataBase.categoryDAO();
     }
 
     public void insert(Expense expense){
         new InsertAsyncTask(expenseDAO).execute(expense);
+    }
+
+    public LiveData<List<Category>> getAllCategories() {
+
+        return categoryDAO.getAllCategories();
+
     }
 
 
@@ -34,9 +47,9 @@ public class ExpenseRepository {
      */
     private static class InsertAsyncTask extends AsyncTask<Expense, Void, Void> {
 
-        private ExpenseDAO mAsyncTaskDao;
+        private ExpenseDao mAsyncTaskDao;
 
-        InsertAsyncTask(ExpenseDAO dao) {
+        InsertAsyncTask(ExpenseDao dao) {
             mAsyncTaskDao = dao;
         }
 
@@ -44,6 +57,7 @@ public class ExpenseRepository {
         protected Void doInBackground(final Expense... params) {
             mAsyncTaskDao.insert(params[0]);
             return null;
+
         }
     }
 }

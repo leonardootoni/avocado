@@ -16,19 +16,7 @@ import ca.humber.echo.team.avocado.database.Entity.Category;
  * @author leonardootoni
  */
 @Dao
-public interface CategoryDAO {
-
-    @Insert
-    void insert(Category category);
-
-    @Insert
-    void insertAll(List<Category> categoryItems);
-
-    @Update
-    void update(Category category);
-
-    @Delete
-    void delete(Category category);
+public interface CategoryDao extends BaseDao<Category> {
 
     @Query("SELECT * FROM CATEGORY WHERE id=:id")
     LiveData<Category> getCategoryById(long id);
@@ -38,7 +26,5 @@ public interface CategoryDAO {
 
     @Query("SELECT * FROM CATEGORY WHERE reference_id=:categoryId")
     LiveData<List<Category>> getSubCategories(long categoryId);
-
-
 
 }

@@ -2,10 +2,8 @@ package ca.humber.echo.team.avocado.database.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
+
 
 import java.util.Date;
 import java.util.List;
@@ -17,19 +15,7 @@ import ca.humber.echo.team.avocado.database.Entity.Expense;
  * @author leonardootoni
  */
 @Dao
-public interface ExpenseDAO {
-
-    @Insert
-    void insert(Expense expense);
-
-    @Insert
-    void insertAll(List<Expense> expenseList);
-
-    @Update
-    void update(Expense expense);
-
-    @Delete
-    void delete(Expense expense);
+public interface ExpenseDao extends BaseDao<Expense> {
 
     @Query("SELECT * FROM EXPENSE WHERE id=:id")
     LiveData<Expense> getExpenseById(long id);
@@ -45,6 +31,5 @@ public interface ExpenseDAO {
 
     @Query("SELECT * FROM EXPENSE WHERE date BETWEEN :dateIni and :dateEnd ORDER BY date DESC")
     LiveData<List<Expense>> getAllExpensesByPeriod(Date dateIni, Date dateEnd);
-
 
 }

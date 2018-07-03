@@ -3,6 +3,7 @@ package ca.humber.echo.team.avocado.database.Entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -19,14 +20,21 @@ public class Category {
     @NonNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long id;
+    private Long id;
 
     @NonNull
     @ColumnInfo(name = "name")
     private String name;
 
     @ColumnInfo(name = "reference_id")
-    private long referenceId;
+    private Long referenceId;
+
+    //Constructor during the initial load
+    @Ignore
+    public Category(@NonNull String name, Long subcategory){
+        this.name = name;
+        this.referenceId = subcategory;
+    }
 
     public Category(@NonNull long id, @NonNull String name, long referenceId) {
         this.id = id;
@@ -35,7 +43,7 @@ public class Category {
     }
 
     @NonNull
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -44,7 +52,7 @@ public class Category {
         return name;
     }
 
-    public long getReferenceId() {
+    public Long getReferenceId() {
         return referenceId;
     }
 
@@ -55,5 +63,17 @@ public class Category {
                 ", name='" + name + '\'' +
                 ", referenceId=" + referenceId +
                 '}';
+    }
+
+    public void setId(@NonNull long id) {
+        this.id = id;
+    }
+
+    public void setName(@NonNull String name) {
+        this.name = name;
+    }
+
+    public void setReferenceId(long referenceId) {
+        this.referenceId = referenceId;
     }
 }

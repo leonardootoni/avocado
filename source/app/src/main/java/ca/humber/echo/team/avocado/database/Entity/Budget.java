@@ -20,7 +20,7 @@ public class Budget {
     @NonNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long id;
+    private Long id;
 
     @NonNull
     @ColumnInfo(name = "name")
@@ -28,16 +28,16 @@ public class Budget {
 
     @NonNull
     @ColumnInfo(name = "category_id")
-    private long referenceId;
+    private Long referenceId;
 
-    public Budget(@NonNull long id, @NonNull String name, @NonNull long referenceId) {
+    public Budget(@NonNull Long id, @NonNull String name, @NonNull Long referenceId) {
         this.id = id;
         this.name = name;
         this.referenceId = referenceId;
     }
 
     @NonNull
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -47,7 +47,7 @@ public class Budget {
     }
 
     @NonNull
-    public long getReferenceId() {
+    public Long getReferenceId() {
         return referenceId;
     }
 

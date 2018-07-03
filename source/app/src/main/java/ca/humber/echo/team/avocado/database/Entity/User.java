@@ -18,7 +18,7 @@ public class User {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long id;
+    private Long id;
 
     @NonNull
     @ColumnInfo(name = "first_name")
@@ -38,7 +38,7 @@ public class User {
         this.email = email;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -59,18 +59,6 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public void setFirstName(@NonNull String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(@NonNull String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(@NonNull String email) {
-        this.email = email;
     }
 
     @Override

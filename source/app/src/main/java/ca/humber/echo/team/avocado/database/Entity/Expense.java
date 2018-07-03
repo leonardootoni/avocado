@@ -24,11 +24,11 @@ public class Expense {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    private long id;
+    private Long id;
 
     @NonNull
     @ColumnInfo(name = "value")
-    private double value;
+    private Double value;
 
     @NonNull
     @ColumnInfo(name = "description")
@@ -40,13 +40,13 @@ public class Expense {
 
     @NonNull
     @ColumnInfo(name = "category_id")
-    private long categoryId;
+    private Long categoryId;
 
     @NonNull
     @ColumnInfo(name = "subcategory_id")
-    private long subcategoryId;
+    private Long subcategoryId;
 
-    public Expense(@NonNull long id, @NonNull double value, @NonNull String description, @NonNull Date date, @NonNull long categoryId, @NonNull long subcategoryId) {
+    public Expense(@NonNull Long id, @NonNull Double value, @NonNull String description, @NonNull Date date, @NonNull Long categoryId, @NonNull Long subcategoryId) {
         this.id = id;
         this.value = value;
         this.description = description;
@@ -56,12 +56,12 @@ public class Expense {
     }
 
     @NonNull
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     @NonNull
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 
@@ -74,12 +74,12 @@ public class Expense {
     public Date getDate() { return date; }
 
     @NonNull
-    public long getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
     @NonNull
-    public long getSubcategoryId() {
+    public Long getSubcategoryId() {
         return subcategoryId;
     }
 

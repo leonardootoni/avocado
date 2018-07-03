@@ -19,24 +19,24 @@ public class AccountSettings {
     @NonNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long id;
+    private Long id;
 
     @NonNull
     @ColumnInfo(name = "user_id")
-    private long userId;
+    private Long userId;
 
     @NonNull
     @ColumnInfo(name = "alert_budget_percent_limit")
-    private double alertBudgetPercentLimit;
+    private Double alertBudgetPercentLimit;
 
     @ColumnInfo(name = "alert_daily_notifications_limit")
-    private long alertDailyNotifications;
+    private Long alertDailyNotifications;
 
     @ColumnInfo(name = "alert_monthly_notifications_limit")
-    private long alertMonthlyNotifications;
+    private Long alertMonthlyNotifications;
 
 
-    public AccountSettings(@NonNull long id, @NonNull long userId, @NonNull double alertBudgetPercentLimit, long alertDailyNotifications, long alertMonthlyNotifications) {
+    public AccountSettings(@NonNull Long id, @NonNull Long userId, @NonNull Double alertBudgetPercentLimit, Long alertDailyNotifications, Long alertMonthlyNotifications) {
         this.id = id;
         this.userId = userId;
         this.alertBudgetPercentLimit = alertBudgetPercentLimit;
@@ -45,25 +45,25 @@ public class AccountSettings {
     }
 
     @NonNull
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     @NonNull
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
     @NonNull
-    public double getAlertBudgetPercentLimit() {
+    public Double getAlertBudgetPercentLimit() {
         return alertBudgetPercentLimit;
     }
 
-    public long getAlertDailyNotifications() {
+    public Long getAlertDailyNotifications() {
         return alertDailyNotifications;
     }
 
-    public long getAlertMonthlyNotifications() {
+    public Long getAlertMonthlyNotifications() {
         return alertMonthlyNotifications;
     }
 

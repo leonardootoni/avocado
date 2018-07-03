@@ -16,19 +16,7 @@ import ca.humber.echo.team.avocado.database.Entity.Budget;
  * @author leonardootoni
  */
 @Dao
-public interface BudgetDAO {
-
-    @Insert
-    void insert(Budget budget);
-
-    @Insert
-    void inserAll(List<Budget> budgetList);
-
-    @Update
-    void update(Budget budget);
-
-    @Delete
-    void delete(Budget budget);
+public interface BudgetDao extends BaseDao<Budget> {
 
     @Query("SELECT * FROM BUDGET WHERE category_id=:categoryId")
     LiveData<Budget> getBudgetByCategory(long categoryId);
