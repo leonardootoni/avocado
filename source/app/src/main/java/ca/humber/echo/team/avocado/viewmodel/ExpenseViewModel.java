@@ -13,7 +13,7 @@ import ca.humber.echo.team.avocado.repository.ExpenseRepository;
 import ca.humber.echo.team.avocado.repository.UserRepository;
 
 /**
- * class is designed to store and manage UI-related data in a lifecycle conscious way.
+ * This class is designed to get and manage UI-related data in a lifecycle conscious way.
  * The ViewModel class allows data to survive configuration changes such as screen rotations.
  *
  * More at:
@@ -24,19 +24,48 @@ import ca.humber.echo.team.avocado.repository.UserRepository;
  */
 public class ExpenseViewModel extends AndroidViewModel{
 
+
+    private LiveData<List<Category>> categoryList;
+    private LiveData<List<Category>> subCategoryList;
+
     private ExpenseRepository expenseRepository;
 
     public ExpenseViewModel(Application application){
         super(application);
+
+        //UserRepository ur = new UserRepository(application);
+        //ur.insert(new User("Leo", "otoni", "l@gmail.com"));
+
         expenseRepository = new ExpenseRepository(application);
+        categoryList = expenseRepository.getAllCategories();
+        subCategoryList = expenseRepository.getAllSubCategories();
+
     }
 
+    /**
+     * Insert an expense into the database
+     * @param expense - The Expense object from the form
+     */
     public void insert(Expense expense){
         expenseRepository.insert(expense);
     }
 
     public void insert(User user) { new UserRepository(getApplication()).insert(user);}
 
-    public LiveData<List<Category>> getAllCategories(){ return expenseRepository.getAllCategories(); }
+    /**
+     * Provide a category list object
+     * @return - A LiveData Category List that will be observable
+     */
+    public LiveData<List<Category>> getCategoryList(){
+        return categoryList;
+    }
+
+    /**
+     * Provide a sub-category list object
+     * @return - A LiveData Sub-Category List that will be observable
+     */
+    public LiveData<List<Category>> getSubCategoryList( ){
+        return subCategoryList;
+    }
 
 }

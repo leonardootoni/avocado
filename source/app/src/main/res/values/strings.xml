@@ -12,5 +12,11 @@
     <string name="exp_entry_save_button">Save</string>
     <string name="exp_entry_hint_value">$ 0.00</string>
     <string name="exp_entry_success_saving_msg">Expense successfully saved.</string>
-    <string name="exp_entry_error_saving_msg">Unexpected error trying to save the expense. Check the data.</string>
+    <string name="exp_entry_dialog_title">Validation Error</string>
+    <string name="exp_entry_dialog_ok_button">OK</string>
+    <string name="exp_entry_dialog_value_message">A valid expense value must be provided</string>
+    <string name="exp_entry_dialog_date_message">An expense date cannot be a future date</string>
+    <string name="exp_entry_dialog_description_message">An expense description must be provided</string>
+
+
 </resources>

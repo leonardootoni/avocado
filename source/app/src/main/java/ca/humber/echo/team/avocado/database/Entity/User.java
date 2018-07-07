@@ -32,10 +32,12 @@ public class User {
     @ColumnInfo(name = "email")
     private String email;
 
-    public User(@NonNull String firstName, @NonNull String lastName, @NonNull String email) {
+    public User(Long id, @NonNull String firstName, @NonNull String lastName, @NonNull String email) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+
     }
 
     public Long getId() {
@@ -55,10 +57,6 @@ public class User {
     @NonNull
     public String getEmail() {
         return email;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     @Override

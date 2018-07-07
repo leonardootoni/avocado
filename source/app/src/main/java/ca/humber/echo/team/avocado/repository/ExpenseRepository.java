@@ -22,23 +22,34 @@ import ca.humber.echo.team.avocado.database.dao.ExpenseDao;
  */
 public class ExpenseRepository {
 
+    //DAOs used by this repository
     private ExpenseDao expenseDAO;
     private CategoryDao categoryDAO;
 
     public ExpenseRepository(Application application){
-        AppDataBase appDataBase = AppDataBase.getInstance(application);
+        AppDataBase appDataBase = AppDataBase.getInstance(application); //gets the database instance
         expenseDAO = appDataBase.expenseDAO();
         categoryDAO = appDataBase.categoryDAO();
     }
 
+    /**
+     * Save an expense into the database.
+     * @param expense - An Expense instance object
+     */
     public void insert(Expense expense){
         new InsertAsyncTask(expenseDAO).execute(expense);
     }
 
     public LiveData<List<Category>> getAllCategories() {
-
         return categoryDAO.getAllCategories();
+    }
 
+    public LiveData<List<Category>> getAllSubCategories(){
+        return categoryDAO.getAllSubCategories();
+    }
+
+    public LiveData<List<Category>> getSubCategories(long categoryId){
+        return categoryDAO.getSubCategories(categoryId);
     }
 
 

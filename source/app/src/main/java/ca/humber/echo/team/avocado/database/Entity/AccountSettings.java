@@ -16,7 +16,6 @@ import android.support.annotation.NonNull;
         indices = { @Index(name = "IDX_FK_ACCOUNT_SETTINGS_USER_ID", value = {"user_id"})})
 public class AccountSettings {
 
-    @NonNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private Long id;
@@ -36,7 +35,7 @@ public class AccountSettings {
     private Long alertMonthlyNotifications;
 
 
-    public AccountSettings(@NonNull Long id, @NonNull Long userId, @NonNull Double alertBudgetPercentLimit, Long alertDailyNotifications, Long alertMonthlyNotifications) {
+    public AccountSettings(Long id, @NonNull Long userId, @NonNull Double alertBudgetPercentLimit, Long alertDailyNotifications, Long alertMonthlyNotifications) {
         this.id = id;
         this.userId = userId;
         this.alertBudgetPercentLimit = alertBudgetPercentLimit;

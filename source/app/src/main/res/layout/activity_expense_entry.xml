@@ -32,7 +32,7 @@
         android:layout_height="32dp"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,23 +44,24 @@
         android:layout_height="32dp"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
 
-    <EditText
-        android:id="@+id/editTextDate"
+    <TextView
+        android:id="@+id/textViewCurrentDate"
+        style="?android:attr/spinnerStyle"
         android:layout_width="0dp"
-        android:layout_height="51dp"
+        android:layout_height="32dp"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:inputType="date"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="16dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerSubcategory" />
 
@@ -70,14 +71,15 @@
         android:layout_height="128dp"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/exp_entry_hint_insert_text"
         android:inputType="textMultiLine"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewCurrentDate" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -109,7 +111,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_weight="1"
-            android:background="@color/colorSaveButton"
+            android:background="@color/colorPrimary"
             android:text="@string/exp_entry_save_button"
             android:textColor="@android:color/white"
             android:textSize="16sp"
@@ -118,5 +120,6 @@
             tools:layout_editor_absoluteY="331dp" />
 
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -12,7 +12,9 @@ import java.util.List;
 import ca.humber.echo.team.avocado.database.Entity.Category;
 
 /**
- * Category and Sub-category DAO class
+ * Category DAO Class
+ * Public interface that defines all queries submited to the database.
+ * The Interface implementation is made by Room automatically, on the application build process.
  * @author leonardootoni
  */
 @Dao
@@ -21,8 +23,11 @@ public interface CategoryDao extends BaseDao<Category> {
     @Query("SELECT * FROM CATEGORY WHERE id=:id")
     LiveData<Category> getCategoryById(long id);
 
-    @Query("SELECT * FROM CATEGORY")
+    @Query("SELECT * FROM CATEGORY WHERE reference_id IS NULL")
     LiveData<List<Category>> getAllCategories();
+
+    @Query("SELECT * FROM CATEGORY WHERE reference_id IS NOT NULL")
+    LiveData<List<Category>> getAllSubCategories();
 
     @Query("SELECT * FROM CATEGORY WHERE reference_id=:categoryId")
     LiveData<List<Category>> getSubCategories(long categoryId);

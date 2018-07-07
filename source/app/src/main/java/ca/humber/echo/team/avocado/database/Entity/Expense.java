@@ -22,7 +22,6 @@ import java.util.Date;
 public class Expense {
 
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(name = "id")
     private Long id;
 
@@ -46,7 +45,7 @@ public class Expense {
     @ColumnInfo(name = "subcategory_id")
     private Long subcategoryId;
 
-    public Expense(@NonNull Long id, @NonNull Double value, @NonNull String description, @NonNull Date date, @NonNull Long categoryId, @NonNull Long subcategoryId) {
+    public Expense(Long id, @NonNull Double value, @NonNull String description, @NonNull Date date, @NonNull Long categoryId, @NonNull Long subcategoryId) {
         this.id = id;
         this.value = value;
         this.description = description;
@@ -55,7 +54,6 @@ public class Expense {
         this.subcategoryId = subcategoryId;
     }
 
-    @NonNull
     public Long getId() {
         return id;
     }

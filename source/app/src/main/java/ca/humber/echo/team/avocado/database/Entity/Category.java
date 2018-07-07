@@ -17,7 +17,6 @@ import android.support.annotation.NonNull;
         indices = { @Index(name = "IDX_FK_CATEGORY_REFERENCE_ID", value = {"reference_id"})})
 public class Category {
 
-    @NonNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private Long id;
@@ -25,6 +24,7 @@ public class Category {
     @NonNull
     @ColumnInfo(name = "name")
     private String name;
+
 
     @ColumnInfo(name = "reference_id")
     private Long referenceId;
@@ -36,13 +36,12 @@ public class Category {
         this.referenceId = subcategory;
     }
 
-    public Category(@NonNull long id, @NonNull String name, long referenceId) {
+    public Category(Long id, @NonNull String name, Long referenceId) {
         this.id = id;
         this.name = name;
         this.referenceId = referenceId;
     }
 
-    @NonNull
     public Long getId() {
         return id;
     }
@@ -56,24 +55,15 @@ public class Category {
         return referenceId;
     }
 
+    /**
+     * Caution: Method used to populate a UI spinner object in the ExpenseActivity
+     * @return - Returns the Category name.
+     */
     @Override
     public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", referenceId=" + referenceId +
-                '}';
+        return getName();
     }
 
-    public void setId(@NonNull long id) {
-        this.id = id;
-    }
 
-    public void setName(@NonNull String name) {
-        this.name = name;
-    }
 
-    public void setReferenceId(long referenceId) {
-        this.referenceId = referenceId;
-    }
 }

@@ -2,17 +2,17 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "efabd3ce3e3ff98fe29c0412e997e222",
+    "identityHash": "cc5c3dde816cbf9391e62a3b60532f63",
     "entities": [
       {
         "tableName": "ACCOUNT_SETTINGS",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `alert_budget_percent_limit` REAL NOT NULL, `alert_daily_notifications_limit` INTEGER, `alert_monthly_notifications_limit` INTEGER, FOREIGN KEY(`user_id`) REFERENCES `USER`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `user_id` INTEGER NOT NULL, `alert_budget_percent_limit` REAL NOT NULL, `alert_daily_notifications_limit` INTEGER, `alert_monthly_notifications_limit` INTEGER, FOREIGN KEY(`user_id`) REFERENCES `USER`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "userId",
@@ -71,13 +71,13 @@
       },
       {
         "tableName": "BUDGET",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `category_id` INTEGER NOT NULL, FOREIGN KEY(`category_id`) REFERENCES `CATEGORY`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `category_id` INTEGER NOT NULL, FOREIGN KEY(`category_id`) REFERENCES `CATEGORY`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "name",
@@ -124,13 +124,13 @@
       },
       {
         "tableName": "CATEGORY",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `reference_id` INTEGER, FOREIGN KEY(`reference_id`) REFERENCES `CATEGORY`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `reference_id` INTEGER, FOREIGN KEY(`reference_id`) REFERENCES `CATEGORY`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "name",
@@ -177,13 +177,13 @@
       },
       {
         "tableName": "EXPENSE",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `value` REAL NOT NULL, `description` TEXT NOT NULL, `date` TEXT NOT NULL, `category_id` INTEGER NOT NULL, `subcategory_id` INTEGER NOT NULL, FOREIGN KEY(`category_id`) REFERENCES `CATEGORY`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`subcategory_id`) REFERENCES `CATEGORY`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `value` REAL NOT NULL, `description` TEXT NOT NULL, `date` TEXT NOT NULL, `category_id` INTEGER NOT NULL, `subcategory_id` INTEGER NOT NULL, FOREIGN KEY(`category_id`) REFERENCES `CATEGORY`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`subcategory_id`) REFERENCES `CATEGORY`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "value",
@@ -323,7 +323,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"efabd3ce3e3ff98fe29c0412e997e222\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"cc5c3dde816cbf9391e62a3b60532f63\")"
     ]
   }
 }

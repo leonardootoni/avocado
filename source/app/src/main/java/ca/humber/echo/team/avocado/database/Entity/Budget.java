@@ -17,7 +17,6 @@ import android.support.annotation.NonNull;
         indices = { @Index(name = "IDX_FK_BUDGET_CATEGORY_ID", value = {"category_id"})})
 public class Budget {
 
-    @NonNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private Long id;
@@ -30,13 +29,12 @@ public class Budget {
     @ColumnInfo(name = "category_id")
     private Long referenceId;
 
-    public Budget(@NonNull Long id, @NonNull String name, @NonNull Long referenceId) {
+    public Budget(Long id, @NonNull String name, @NonNull Long referenceId) {
         this.id = id;
         this.name = name;
         this.referenceId = referenceId;
     }
 
-    @NonNull
     public Long getId() {
         return id;
     }
