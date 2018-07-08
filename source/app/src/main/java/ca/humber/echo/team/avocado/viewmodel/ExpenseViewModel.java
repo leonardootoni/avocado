@@ -34,9 +34,6 @@ public class ExpenseViewModel extends AndroidViewModel{
     public ExpenseViewModel(Application application){
         super(application);
 
-        //UserRepository ur = new UserRepository(application);
-        //ur.insert(new User("Leo", "otoni", "l@gmail.com"));
-
         expenseRepository = new ExpenseRepository(application);
         categoryList = expenseRepository.getAllCategories();
         subCategoryList = expenseRepository.getAllSubCategories();
