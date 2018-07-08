@@ -17,6 +17,7 @@ import ca.humber.echo.team.avocado.repository.UserRepository;
  * The ViewModel class allows data to survive configuration changes such as screen rotations.
  *
  * More at:
+ * https://developer.android.com/jetpack/docs/guide
  * https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#8
  * https://developer.android.com/topic/libraries/architecture/viewmodel
  *
