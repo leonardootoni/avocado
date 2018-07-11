@@ -25,5 +25,8 @@
     <string name="exp_entry_dialog_date_message">An expense date cannot be a future date</string>
     <string name="exp_entry_dialog_description_message">An expense description must be provided</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

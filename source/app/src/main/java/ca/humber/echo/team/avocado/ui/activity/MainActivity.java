@@ -1,16 +1,20 @@
 package ca.humber.echo.team.avocado.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import ca.humber.echo.team.avocado.R;
+import ca.humber.echo.team.avocado.ui.fragment.DashBoardFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DashBoardFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
 
@@ -28,8 +32,15 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.main_menu_dashboard);
-                    Intent intent = new Intent(getApplicationContext(), ExpenseEntryActivity.class);
-                    startActivity(intent);
+                    FragmentManager fManager = getSupportFragmentManager();
+                    FragmentTransaction fTransaction = fManager.beginTransaction();
+
+                    DashBoardFragment dashBoardFragment = DashBoardFragment.newInstance();
+                    fTransaction.replace(R.id.frameMainActivity, dashBoardFragment);
+                    fTransaction.addToBackStack(null);
+                    fTransaction.commit();
+
+
                     return true;
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.main_menu_notifications);
@@ -52,4 +63,8 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }

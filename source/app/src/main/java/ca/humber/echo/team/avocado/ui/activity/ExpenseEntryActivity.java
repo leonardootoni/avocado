@@ -80,12 +80,7 @@ public class ExpenseEntryActivity extends AppCompatActivity
         });
 
         //Bind the subCategoryList object to the subCategorySpinner
-        viewModel.getSubCategoryList().observe(this, new Observer<List<Category>>() {
-            @Override
-            public void onChanged(@Nullable List<Category> subCategoryList) {
-                loadSubCategorySpinner(subCategoryList);
-            }
-        });
+        viewModel.getSubCategoryList().observe(this, subCategoryList -> loadSubCategorySpinner(subCategoryList));
 
 
         //Forces to uodate the subCategories according to the selected category

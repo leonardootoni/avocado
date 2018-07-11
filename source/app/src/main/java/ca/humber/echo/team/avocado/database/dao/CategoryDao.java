@@ -23,13 +23,13 @@ public interface CategoryDao extends BaseDao<Category> {
     @Query("SELECT * FROM CATEGORY WHERE id=:id")
     LiveData<Category> getCategoryById(long id);
 
-    @Query("SELECT * FROM CATEGORY WHERE reference_id IS NULL")
+    @Query("SELECT * FROM CATEGORY WHERE reference_id IS NULL ORDER BY NAME")
     LiveData<List<Category>> getAllCategories();
 
-    @Query("SELECT * FROM CATEGORY WHERE reference_id IS NOT NULL")
+    @Query("SELECT * FROM CATEGORY WHERE reference_id IS NOT NULL ORDER BY NAME")
     LiveData<List<Category>> getAllSubCategories();
 
-    @Query("SELECT * FROM CATEGORY WHERE reference_id=:categoryId")
+    @Query("SELECT * FROM CATEGORY WHERE reference_id=:categoryId ORDER BY NAME")
     LiveData<List<Category>> getSubCategories(long categoryId);
 
 }
