@@ -9,22 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
+                <action android:name="ca.humber.echo.team.avocado.ui.activity.MainActivity" />
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.activity.NotificationsActivity" android:label="@string/notifications"/>
-
-        <activity android:name=".ui.activity.ExpenseEntryActivity" android:label="@string/exp_entry_title">
+        <activity
+            android:name=".ui.activity.NotificationsActivity"
+            android:label="@string/notifications" />
+        <activity
+            android:name=".ui.activity.ExpenseEntryActivity"
+            android:label="@string/exp_entry_title">
             <intent-filter>
-                <action android:name="ca.humber.echo.team.avocado.ui.activity.ExpenseEntryActivity"/>
+                <action android:name="ca.humber.echo.team.avocado.ui.activity.ExpenseEntryActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

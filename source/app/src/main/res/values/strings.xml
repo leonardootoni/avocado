@@ -2,10 +2,17 @@
     <!-- General app strings goes here -->
     <string name="app_name">avocado</string>
 
-    <!-- Notifications Use Case Strings goes here -->
+    <!-- Main Activity -->
+    <string name="main_menu_expenses">Expenses</string>
+    <string name="main_menu_goals">Goals</string>
+    <string name="main_menu_dashboard">Dashboard</string>
+    <string name="main_menu_notifications">Notifications</string>
+    <string name="main_menu_reports">Reports</string>
+
+    <!-- Notifications Use Case -->
     <string name="notifications">Notifications</string>
 
-    <!-- Expenses Entry Use Case Strings goes here -->
+    <!-- Expenses Entry Use Case -->
     <string name="exp_entry_title">New Entry</string>
     <string name="exp_entry_hint_insert_text">write here a description</string>
     <string name="exp_entry_cancel_button">Cancel</string>
