@@ -4,11 +4,13 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
+import java.util.Calendar;
 import java.util.List;
 
 import ca.humber.echo.team.avocado.database.Entity.Category;
 import ca.humber.echo.team.avocado.database.Entity.Expense;
 import ca.humber.echo.team.avocado.database.Entity.User;
+import ca.humber.echo.team.avocado.database.pojos.TotalExpensesByBudget;
 import ca.humber.echo.team.avocado.repository.ExpenseRepository;
 import ca.humber.echo.team.avocado.repository.UserRepository;
 
@@ -44,8 +46,10 @@ public class ExpenseViewModel extends AndroidViewModel{
      * Insert an expense into the database
      * @param expense - The Expense object from the form
      */
-    public void insert(Expense expense){
+    public void insert(Expense expense) {
+
         expenseRepository.insert(expense);
+
     }
 
     public void insert(User user) { new UserRepository(getApplication()).insert(user);}

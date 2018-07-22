@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 
 import java.util.concurrent.Executors;
 
-import ca.humber.echo.team.avocado.database.InitialData.CategoryBaseData;
+import ca.humber.echo.team.avocado.database.InitialData.InitialBaseData;
 import ca.humber.echo.team.avocado.database.dao.CategoryDao;
 import ca.humber.echo.team.avocado.database.dao.UserDao;
 import ca.humber.echo.team.avocado.database.utils.Converter;
@@ -57,8 +57,12 @@ public abstract class AppDataBase extends RoomDatabase {
                                     Executors.newSingleThreadExecutor().execute(new Runnable() {
                                         @Override
                                         public void run() {
-                                            //load the base Categories and Sub-Categories after the database creation
-                                            instance.categoryDAO().insertAll(new CategoryBaseData().getAllCategoryBaseData());
+                                            InitialBaseData ibd = new InitialBaseData();
+                                            //insert initial base data after the database creation
+                                            instance.categoryDAO().insertAll(ibd.getAllCategoryBaseData());
+                                            instance.budgetDAO().insertAll(ibd.getAllBudgetBaseData());
+                                            instance.userDAO().insert(ibd.getDefaultUser());
+                                            instance.accountSettingsDAO().insert(ibd.getAcctSettings());
                                         }
                                     });
                                 }

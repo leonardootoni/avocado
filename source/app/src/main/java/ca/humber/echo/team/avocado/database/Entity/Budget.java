@@ -14,7 +14,7 @@ import android.support.annotation.NonNull;
  */
 @Entity(tableName = "BUDGET",
         foreignKeys = {@ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "category_id")},
-        indices = { @Index(name = "IDX_FK_BUDGET_CATEGORY_ID", value = {"category_id"})})
+        indices = { @Index(name = "IDX_FK_BUDGET_CATEGORY_ID", value = {"category_id"}, unique = true)})
 public class Budget {
 
     @PrimaryKey(autoGenerate = true)
@@ -22,16 +22,20 @@ public class Budget {
     private Long id;
 
     @NonNull
-    @ColumnInfo(name = "name")
-    private String name;
+    @ColumnInfo(name = "value")
+    private Double value;
 
+    /**
+     * This column has an unique index to restrict at the database level that only one budget can
+     * be set to a given category.
+     */
     @NonNull
     @ColumnInfo(name = "category_id")
     private Long referenceId;
 
-    public Budget(Long id, @NonNull String name, @NonNull Long referenceId) {
+    public Budget(Long id, @NonNull Double value, @NonNull Long referenceId) {
         this.id = id;
-        this.name = name;
+        this.value = value;
         this.referenceId = referenceId;
     }
 
@@ -40,8 +44,8 @@ public class Budget {
     }
 
     @NonNull
-    public String getName() {
-        return name;
+    public Double getValue() {
+        return value;
     }
 
     @NonNull
@@ -53,7 +57,7 @@ public class Budget {
     public String toString() {
         return "Budget{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", value='" + value + '\'' +
                 ", referenceId=" + referenceId +
                 '}';
     }

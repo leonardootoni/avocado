@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Base Interface for generic DAO methods
- * @param <T>
+ * @author leonardootoni
  */
 @Dao
 public interface BaseDao<T> {

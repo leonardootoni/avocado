@@ -3,7 +3,9 @@ package ca.humber.echo.team.avocado.database.utils;
 import android.arch.persistence.room.TypeConverter;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -16,7 +18,7 @@ public class Converter {
     public static Date fromTextToDate(String date) {
 
         Date newDate;
-        try{
+        try {
             newDate = DateFormat.getInstance().parse(date);
         } catch (ParseException ex){
             newDate = null;
@@ -26,7 +28,14 @@ public class Converter {
 
     @TypeConverter
     public static String fromDateToText(Date date){
-        return date == null ? null : date.toString();
+
+        if(date != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+            return sdf.format(date);
+        } else {
+            return null;
+        }
+
     }
 
 }

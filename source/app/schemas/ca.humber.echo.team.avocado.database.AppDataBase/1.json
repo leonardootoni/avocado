@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cc5c3dde816cbf9391e62a3b60532f63",
+    "identityHash": "6b313d113b5100401b9e783fb1ba24e7",
     "entities": [
       {
         "tableName": "ACCOUNT_SETTINGS",
@@ -71,7 +71,7 @@
       },
       {
         "tableName": "BUDGET",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `category_id` INTEGER NOT NULL, FOREIGN KEY(`category_id`) REFERENCES `CATEGORY`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `value` REAL NOT NULL, `category_id` INTEGER NOT NULL, FOREIGN KEY(`category_id`) REFERENCES `CATEGORY`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -80,9 +80,9 @@
             "notNull": false
           },
           {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "REAL",
             "notNull": true
           },
           {
@@ -101,11 +101,11 @@
         "indices": [
           {
             "name": "IDX_FK_BUDGET_CATEGORY_ID",
-            "unique": false,
+            "unique": true,
             "columnNames": [
               "category_id"
             ],
-            "createSql": "CREATE  INDEX `IDX_FK_BUDGET_CATEGORY_ID` ON `${TABLE_NAME}` (`category_id`)"
+            "createSql": "CREATE UNIQUE INDEX `IDX_FK_BUDGET_CATEGORY_ID` ON `${TABLE_NAME}` (`category_id`)"
           }
         ],
         "foreignKeys": [
@@ -323,7 +323,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"cc5c3dde816cbf9391e62a3b60532f63\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"6b313d113b5100401b9e783fb1ba24e7\")"
     ]
   }
 }

@@ -2,6 +2,7 @@ package ca.humber.echo.team.avocado.ui.activity;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.arch.persistence.room.Ignore;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -72,15 +73,12 @@ public class ExpenseEntryActivity extends AppCompatActivity
 
 
         //Bind the CategoryList object to the CategorySpinner
-        viewModel.getCategoryList().observe(this, new Observer<List<Category>>() {
-            @Override
-            public void onChanged(@NonNull final List<Category> categoryList) {
-                loadCategorySpinner(categoryList);
-            }
-        });
+        viewModel.getCategoryList().observe(this, categoryList ->
+                loadCategorySpinner(categoryList));
 
         //Bind the subCategoryList object to the subCategorySpinner
-        viewModel.getSubCategoryList().observe(this, subCategoryList -> loadSubCategorySpinner(subCategoryList));
+        viewModel.getSubCategoryList().observe(this, subCategoryList ->
+                loadSubCategorySpinner(subCategoryList));
 
 
         //Forces to uodate the subCategories according to the selected category
@@ -192,6 +190,7 @@ public class ExpenseEntryActivity extends AppCompatActivity
         viewModel.insert(expense);
     }
 
+
     /**
      * Performs the form validation and shows a dialog message in case of inconsistencies.
      * @return
@@ -226,13 +225,8 @@ public class ExpenseEntryActivity extends AppCompatActivity
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle(R.string.exp_entry_dialog_title);
             alertDialog.setMessage(message);
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,
-                    getResources().getString(R.string.exp_entry_dialog_ok_button),
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.exp_entry_dialog_ok_button),
+                    (dialog, which) -> dialog.dismiss());
             alertDialog.show();
             return false;
         }else{

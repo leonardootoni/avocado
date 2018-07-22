@@ -11,6 +11,20 @@
 
     <!-- Notifications Use Case -->
     <string name="notifications">Notifications</string>
+    <string name="notifications_title_budget_alert">Budget Alert</string>
+    <string name="notifications_title_budget_busted">Budget Busted</string>
+
+    <string name="notif_msg_budget_in_alert_range">Warning, your expenses achieved ${TOKEN} of value set in the budget control.
+    \n\nCategory: ${CATEGORY}
+        \nBudget: ${BUDGET}
+        \nExpenditure: ${EXPENDITURE}
+    </string>
+    <string name="notif_msg_budget_busted">Warning, budget is busted. You are ${TOKEN} over the budget defined.
+    \n\nCategory: ${CATEGORY}
+        \nBudget: ${BUDGET}
+        \nExpenditure: ${EXPENDITURE}
+    </string>
+
 
     <!-- Expenses Entry Use Case -->
     <string name="exp_entry_title">New Entry</string>
