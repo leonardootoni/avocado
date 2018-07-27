@@ -1,6 +1,5 @@
 package ca.humber.echo.team.avocado.ui.activity;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,8 +12,10 @@ import android.widget.TextView;
 
 import ca.humber.echo.team.avocado.R;
 import ca.humber.echo.team.avocado.ui.fragment.DashBoardFragment;
+import ca.humber.echo.team.avocado.ui.fragment.ReportsFragment;
 
-public class MainActivity extends AppCompatActivity implements DashBoardFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements DashBoardFragment.OnFragmentInteractionListener,
+                                                                ReportsFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
 
@@ -46,7 +47,14 @@ public class MainActivity extends AppCompatActivity implements DashBoardFragment
                     mTextMessage.setText(R.string.main_menu_notifications);
                     return true;
                 case R.id.navigation_reports:
-                    mTextMessage.setText(R.string.main_menu_reports);
+                    //mTextMessage.setText(R.string.main_menu_reports);
+                    fManager = getSupportFragmentManager();
+                    fTransaction = fManager.beginTransaction();
+
+                    ReportsFragment reportsFragment = ReportsFragment.newInstance();
+                    fTransaction.replace(R.id.frameMainActivity, reportsFragment);
+                    fTransaction.addToBackStack(null);
+                    fTransaction.commit();
                     return true;
             }
             return false;

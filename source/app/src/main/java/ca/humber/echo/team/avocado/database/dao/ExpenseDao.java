@@ -46,4 +46,45 @@ public interface ExpenseDao extends BaseDao<Expense> {
             "GROUP BY b.value, a.alert_budget_percent_limit, c.name ")
     TotalExpensesByBudget getTotalExpensesByBudget(Long idCategory, Date systemTime);
 
+//  REPORTS QUERY
+    @Query("SELECT * FROM EXPENSE ORDER BY value DESC")
+    LiveData<List<Expense>> getAllExpenses();
+
+//    @Query("SELECT description, value FROM EXPENSE ORDER BY value DESC LIMIT 1")
+//    LiveData<List<String>> getLargestExpense();
+//
+//    @Query("SELECT c.name, COUNT(e.category_id) FROM EXPENSE e JOIN CATEGORY c ON e.category_id = c.id GROUP BY e.category_id ORDER BY COUNT(e.category_id) DESC LIMIT 1")
+//    LiveData<List<String>> getLargestEntriesCategory();
+//
+//    @Query("SELECT c.name, COUNT(e.subcategory_id) FROM EXPENSE e JOIN CATEGORY c ON e.subcategory_id = c.id GROUP BY e.category_id ORDER BY COUNT(e.subcategory_id) DESC LIMIT 1")
+//    LiveData<List<String>> getLargestEntriesSubCategory();
+//
+//    @Query("SELECT description, COUNT(description) FROM EXPENSE GROUP BY description ORDER BY COUNT(description) DESC LIMIT 1")
+//    LiveData<List<String>> getLargestEntriesDescription();
+
+
+
+    @Query("SELECT description FROM EXPENSE ORDER BY value DESC LIMIT 1")
+    LiveData<String> getLargestExpenseName();
+
+    @Query("SELECT value FROM EXPENSE ORDER BY value DESC LIMIT 1")
+    LiveData<Double> getLargestExpenseValue();
+
+    @Query("SELECT c.name FROM EXPENSE e JOIN CATEGORY c ON e.category_id = c.id GROUP BY e.category_id ORDER BY COUNT(e.category_id) DESC LIMIT 1")
+    LiveData<String> getLargestEntryCategoryName();
+
+    @Query("SELECT COUNT(e.category_id) FROM EXPENSE e JOIN CATEGORY c ON e.category_id = c.id GROUP BY e.category_id ORDER BY COUNT(e.category_id) DESC LIMIT 1")
+    LiveData<Integer> getLargestEntryCategoryCount();
+
+    @Query("SELECT c.name FROM EXPENSE e JOIN CATEGORY c ON e.subcategory_id = c.id GROUP BY e.category_id ORDER BY COUNT(e.subcategory_id) DESC LIMIT 1")
+    LiveData<String> getLargestEntrySubCategoryName();
+
+    @Query("SELECT COUNT(e.subcategory_id) FROM EXPENSE e JOIN CATEGORY c ON e.subcategory_id = c.id GROUP BY e.category_id ORDER BY COUNT(e.subcategory_id) DESC LIMIT 1")
+    LiveData<Integer> getLargestEntrySubCategoryCount();
+
+    @Query("SELECT description FROM EXPENSE GROUP BY description ORDER BY COUNT(description) DESC LIMIT 1")
+    LiveData<String> getLargestEntryDescriptionName();
+
+    @Query("SELECT COUNT(description) FROM EXPENSE GROUP BY description ORDER BY COUNT(description) DESC LIMIT 1")
+    LiveData<Integer> getLargestEntryDescriptionCount();
 }

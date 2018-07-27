@@ -41,6 +41,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reportsTitle">Reports</string>
+    <string name="textViewReport1">TextView</string>
+    <string name="textViewReport2">TextView</string>
+    <string name="textViewReport3">TextView</string>
+    <string name="textViewReport4">TextView</string>
 
 
 </resources>
