@@ -23,7 +23,16 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ReportsV
     }
 
     private final LayoutInflater reportInflater;
-    private List<Expense> tempExpenses; // Cached copy of words
+    private List<Expense> tempExpenses;
+
+    private Double largestExpenseValue;
+    private String largestEntryCategoryName;
+    private Integer largestEntryCategoryCount;
+    private String largestEntrySubCategoryName;
+    private Integer largestEntrySubCategoryCount;
+    private String largestEntryDescriptionName;
+    private Integer largestEntryDescriptionCount;
+
 
     ReportsAdapter(Context context) { reportInflater = LayoutInflater.from(context); }
 

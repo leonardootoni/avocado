@@ -37,6 +37,14 @@ public class ReportsFragment extends Fragment {
     private TextView textViewReport3;
     private TextView textViewReport4;
     ReportsViewModel viewModel;
+    String largestExpenseName;
+    Double largestExpenseValue;
+    String largestEntryCategoryName;
+    Integer largestEntryCategoryCount;
+    String largestEntrySubCategoryName;
+    Integer largestEntrySubCategoryCount;
+    String largestEntryDescriptionName;
+    Integer largestEntryDescriptionCount;
 
     private OnFragmentInteractionListener mListener;
 
@@ -86,14 +94,14 @@ public class ReportsFragment extends Fragment {
 
         View view =  inflater.inflate(R.layout.fragment_reports, container, false);
 
-        String largestExpenseName = viewModel.getLargestExpenseName().getValue();
-        Double largestExpenseValue = viewModel.getLargestExpenseValue().getValue();
-        String largestEntryCategoryName = viewModel.getLargestEntryCategoryName().getValue();
-        Integer largestEntryCategoryCount = viewModel.getLargestEntryCategoryCount().getValue();
-        String largestEntrySubCategoryName = viewModel.getLargestEntrySubCategoryName().getValue();
-        Integer largestEntrySubCategoryCount = viewModel.getLargestEntrySubCategoryCount().getValue();
-        String largestEntryDescriptionName = viewModel.getLargestEntryDescriptionName().getValue();
-        Integer largestEntryDescriptionCount = viewModel.getLargestEntryDescriptionCount().getValue();
+        largestExpenseName = viewModel.getLargestExpenseName().getValue();
+        largestExpenseValue = viewModel.getLargestExpenseValue().getValue();
+        largestEntryCategoryName = viewModel.getLargestEntryCategoryName().getValue();
+        largestEntryCategoryCount = viewModel.getLargestEntryCategoryCount().getValue();
+        largestEntrySubCategoryName = viewModel.getLargestEntrySubCategoryName().getValue();
+        largestEntrySubCategoryCount = viewModel.getLargestEntrySubCategoryCount().getValue();
+        largestEntryDescriptionName = viewModel.getLargestEntryDescriptionName().getValue();
+        largestEntryDescriptionCount = viewModel.getLargestEntryDescriptionCount().getValue();
 
         textViewReport1 = (TextView) view.findViewById(R.id.textViewReport1);
         textViewReport1.setText("The largest Expense is " + largestExpenseName + " at a value of " + largestExpenseValue);
