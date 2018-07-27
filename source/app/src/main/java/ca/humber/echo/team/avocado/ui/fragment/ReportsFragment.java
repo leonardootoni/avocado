@@ -1,17 +1,31 @@
 package ca.humber.echo.team.avocado.ui.fragment;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import ca.humber.echo.team.avocado.R;
+import ca.humber.echo.team.avocado.ui.fragment.ReportsAdapter.LargeCategoryCountAdapter;
+import ca.humber.echo.team.avocado.ui.fragment.ReportsAdapter.LargeCategoryNameAdapter;
+import ca.humber.echo.team.avocado.ui.fragment.ReportsAdapter.LargeDescriptionCountAdapter;
+import ca.humber.echo.team.avocado.ui.fragment.ReportsAdapter.LargeDescriptionNameAdapter;
+import ca.humber.echo.team.avocado.ui.fragment.ReportsAdapter.LargeExpenseNameAdapter;
+import ca.humber.echo.team.avocado.ui.fragment.ReportsAdapter.LargeExpenseValueAdapter;
+import ca.humber.echo.team.avocado.ui.fragment.ReportsAdapter.LargeSubCategoryCountAdapter;
+import ca.humber.echo.team.avocado.ui.fragment.ReportsAdapter.LargeSubCategoryNameAdapter;
 import ca.humber.echo.team.avocado.viewmodel.ReportsViewModel;
 
 /**
@@ -23,12 +37,10 @@ import ca.humber.echo.team.avocado.viewmodel.ReportsViewModel;
  * create an instance of this fragment.
  */
 public class ReportsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -36,15 +48,17 @@ public class ReportsFragment extends Fragment {
     private TextView textViewReport2;
     private TextView textViewReport3;
     private TextView textViewReport4;
+
     ReportsViewModel viewModel;
-    String largestExpenseName;
-    Double largestExpenseValue;
-    String largestEntryCategoryName;
-    Integer largestEntryCategoryCount;
-    String largestEntrySubCategoryName;
-    Integer largestEntrySubCategoryCount;
-    String largestEntryDescriptionName;
-    Integer largestEntryDescriptionCount;
+
+    //List<String> largestExpenseName;
+    List<Double> largestExpenseValue;
+    //List<Expense> largestEntryCategoryName;
+    //List<Expense> largestEntryCategoryCount;
+    //List<Expense> largestEntrySubCategoryName;
+    //List<Expense> largestEntrySubCategoryCount;
+    //List<Expense> largestEntryDescriptionName;
+    //List<Expense> largestEntryDescriptionCount;
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,7 +76,6 @@ public class ReportsFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment ReportsFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static ReportsFragment newInstance(String param1, String param2) {
         ReportsFragment fragment = new ReportsFragment();
         Bundle args = new Bundle();
@@ -94,39 +107,114 @@ public class ReportsFragment extends Fragment {
 
         View view =  inflater.inflate(R.layout.fragment_reports, container, false);
 
-        largestExpenseName = viewModel.getLargestExpenseName().getValue();
-        largestExpenseValue = viewModel.getLargestExpenseValue().getValue();
-        largestEntryCategoryName = viewModel.getLargestEntryCategoryName().getValue();
-        largestEntryCategoryCount = viewModel.getLargestEntryCategoryCount().getValue();
-        largestEntrySubCategoryName = viewModel.getLargestEntrySubCategoryName().getValue();
-        largestEntrySubCategoryCount = viewModel.getLargestEntrySubCategoryCount().getValue();
-        largestEntryDescriptionName = viewModel.getLargestEntryDescriptionName().getValue();
-        largestEntryDescriptionCount = viewModel.getLargestEntryDescriptionCount().getValue();
+        RecyclerView recyclerviewLargeExpenseName = view.findViewById(R.id.recyclerviewLargeExpenseName);
+        final LargeExpenseNameAdapter adapter = new LargeExpenseNameAdapter(this.getContext());
+        recyclerviewLargeExpenseName.setAdapter(adapter);
+        recyclerviewLargeExpenseName.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        viewModel.getLargestExpenseName().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable final List<String> expense) {
+                adapter.setLargestExpenseName(expense);
+            }
+        });
+
+
+        RecyclerView recyclerviewLargeExpenseValue = view.findViewById(R.id.recyclerviewLargeExpenseValue);
+        final LargeExpenseValueAdapter largeExpenseValueAdapter = new LargeExpenseValueAdapter(this.getContext());
+        recyclerviewLargeExpenseValue.setAdapter(largeExpenseValueAdapter);
+        recyclerviewLargeExpenseValue.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        viewModel.getLargestExpenseValue().observe(this, new Observer<List<Double>>() {
+            @Override
+            public void onChanged(@Nullable final List<Double> expense) {
+                largeExpenseValueAdapter.setLargestExpenseValue(expense);
+            }
+        });
+
+        RecyclerView recyclerViewCategoryName = view.findViewById(R.id.recyclerViewCategoryName);
+        final LargeCategoryNameAdapter largeCategoryNameAdapter = new LargeCategoryNameAdapter(this.getContext());
+        recyclerViewCategoryName.setAdapter(largeCategoryNameAdapter);
+        recyclerViewCategoryName.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        viewModel.getLargestEntryCategoryName().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable final List<String> expense) {
+                largeCategoryNameAdapter.setLargestCategoryName(expense);
+            }
+        });
+
+        RecyclerView recyclerViewCategoryCount = view.findViewById(R.id.recyclerViewCategoryCount);
+        final LargeCategoryCountAdapter largeCategoryCountAdapter = new LargeCategoryCountAdapter(this.getContext());
+        recyclerViewCategoryCount.setAdapter(largeCategoryCountAdapter);
+        recyclerViewCategoryCount.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        viewModel.getLargestEntryCategoryCount().observe(this, new Observer<List<Integer>>() {
+            @Override
+            public void onChanged(@Nullable final List<Integer> expense) {
+                largeCategoryCountAdapter.setLargestCategoryCount(expense);
+            }
+        });
+
+        RecyclerView recyclerViewSubCategoryName = view.findViewById(R.id.recyclerViewSubCategoryName);
+        final LargeSubCategoryNameAdapter largeSubCategoryNameAdapter = new LargeSubCategoryNameAdapter(this.getContext());
+        recyclerViewSubCategoryName.setAdapter(largeSubCategoryNameAdapter);
+        recyclerViewSubCategoryName.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        viewModel.getLargestEntrySubCategoryName().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable final List<String> expense) {
+                largeSubCategoryNameAdapter.setLargestSubCategoryName(expense);
+            }
+        });
+
+        RecyclerView recyclerViewSubCategoryCount = view.findViewById(R.id.recyclerViewSubCategoryCount);
+        final LargeSubCategoryCountAdapter largeSubCategoryCountAdapter = new LargeSubCategoryCountAdapter(this.getContext());
+        recyclerViewSubCategoryCount.setAdapter(largeSubCategoryCountAdapter);
+        recyclerViewSubCategoryCount.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        viewModel.getLargestEntrySubCategoryCount().observe(this, new Observer<List<Integer>>() {
+            @Override
+            public void onChanged(@Nullable final List<Integer> expense) {
+                largeSubCategoryCountAdapter.setLargestSubCategoryCount(expense);
+            }
+        });
+
+
+
+
+        RecyclerView recyclerViewDescriptionName = view.findViewById(R.id.recyclerViewDescriptionName);
+        final LargeDescriptionNameAdapter largeDescriptionNameAdapter = new LargeDescriptionNameAdapter(this.getContext());
+        recyclerViewDescriptionName.setAdapter(largeDescriptionNameAdapter);
+        recyclerViewDescriptionName.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        viewModel.getLargestEntryDescriptionName().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(@Nullable final List<String> expense) {
+                largeDescriptionNameAdapter.setLargestDescriptionName(expense);
+            }
+        });
+
+        RecyclerView recyclerViewDescriptionCount = view.findViewById(R.id.recyclerViewDescriptionCount);
+        final LargeDescriptionCountAdapter largeDescriptionCountAdapter = new LargeDescriptionCountAdapter(this.getContext());
+        recyclerViewDescriptionCount.setAdapter(largeDescriptionCountAdapter);
+        recyclerViewDescriptionCount.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        viewModel.getLargestEntryDescriptionCount().observe(this, new Observer<List<Integer>>() {
+            @Override
+            public void onChanged(@Nullable final List<Integer> expense) {
+                largeDescriptionCountAdapter.setLargestDescriptionCount(expense);
+            }
+        });
 
         textViewReport1 = (TextView) view.findViewById(R.id.textViewReport1);
-        textViewReport1.setText("The largest Expense is " + largestExpenseName + " at a value of " + largestExpenseValue);
-
         textViewReport2 = (TextView) view.findViewById(R.id.textViewReport2);
-        textViewReport2.setText("You registered " + largestEntryCategoryCount + " entries on the category " + largestEntryCategoryName);
-
         textViewReport3 = (TextView) view.findViewById(R.id.textViewReport3);
-        textViewReport3.setText("You registered " + largestEntrySubCategoryCount + " entries on the subcategory " + largestEntrySubCategoryName);
-
         textViewReport4 = (TextView) view.findViewById(R.id.textViewReport4);
-        textViewReport4.setText("You most common entry is " + largestEntryDescriptionName + " with " + largestEntryDescriptionCount + " entries registerd");
 
-//        floatingActionButton = view.findViewById(R.id.floatingActionButton);
-//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getContext(), ExpenseEntryActivity.class);
-//                startActivity(intent);
-//            }
-//        });
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -136,6 +224,7 @@ public class ReportsFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
@@ -161,7 +250,6 @@ public class ReportsFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

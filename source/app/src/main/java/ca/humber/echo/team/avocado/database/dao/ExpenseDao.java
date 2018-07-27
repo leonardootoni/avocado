@@ -65,26 +65,26 @@ public interface ExpenseDao extends BaseDao<Expense> {
 
 
     @Query("SELECT description FROM EXPENSE ORDER BY value DESC LIMIT 1")
-    LiveData<String> getLargestExpenseName();
+    LiveData<List<String>> getLargestExpenseName();
 
     @Query("SELECT value FROM EXPENSE ORDER BY value DESC LIMIT 1")
-    LiveData<Double> getLargestExpenseValue();
+    LiveData<List<Double>> getLargestExpenseValue();
 
     @Query("SELECT c.name FROM EXPENSE e JOIN CATEGORY c ON e.category_id = c.id GROUP BY e.category_id ORDER BY COUNT(e.category_id) DESC LIMIT 1")
-    LiveData<String> getLargestEntryCategoryName();
+    LiveData<List<String>> getLargestEntryCategoryName();
 
     @Query("SELECT COUNT(e.category_id) FROM EXPENSE e JOIN CATEGORY c ON e.category_id = c.id GROUP BY e.category_id ORDER BY COUNT(e.category_id) DESC LIMIT 1")
-    LiveData<Integer> getLargestEntryCategoryCount();
+    LiveData<List<Integer>> getLargestEntryCategoryCount();
 
     @Query("SELECT c.name FROM EXPENSE e JOIN CATEGORY c ON e.subcategory_id = c.id GROUP BY e.category_id ORDER BY COUNT(e.subcategory_id) DESC LIMIT 1")
-    LiveData<String> getLargestEntrySubCategoryName();
+    LiveData<List<String>> getLargestEntrySubCategoryName();
 
     @Query("SELECT COUNT(e.subcategory_id) FROM EXPENSE e JOIN CATEGORY c ON e.subcategory_id = c.id GROUP BY e.category_id ORDER BY COUNT(e.subcategory_id) DESC LIMIT 1")
-    LiveData<Integer> getLargestEntrySubCategoryCount();
+    LiveData<List<Integer>> getLargestEntrySubCategoryCount();
 
     @Query("SELECT description FROM EXPENSE GROUP BY description ORDER BY COUNT(description) DESC LIMIT 1")
-    LiveData<String> getLargestEntryDescriptionName();
+    LiveData<List<String>> getLargestEntryDescriptionName();
 
     @Query("SELECT COUNT(description) FROM EXPENSE GROUP BY description ORDER BY COUNT(description) DESC LIMIT 1")
-    LiveData<Integer> getLargestEntryDescriptionCount();
+    LiveData<List<Integer>> getLargestEntryDescriptionCount();
 }

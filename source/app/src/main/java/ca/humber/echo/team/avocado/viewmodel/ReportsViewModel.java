@@ -13,14 +13,14 @@ public class ReportsViewModel extends AndroidViewModel {
     private ReportsRepository reportsRepository;
 
     private LiveData<List<Expense>> expenses;
-    private LiveData<String> largestExpenseName;
-    private LiveData<Double> largestExpenseValue;
-    private LiveData<String> largestEntryCategoryName;
-    private LiveData<Integer> largestEntryCategoryCount;
-    private LiveData<String> largestEntrySubCategoryName;
-    private LiveData<Integer> largestEntrySubCategoryCount;
-    private LiveData<String> largestEntryDescriptionName;
-    private LiveData<Integer> largestEntryDescriptionCount;
+    private LiveData<List<String>> largestExpenseName;
+    private LiveData<List<Double>> largestExpenseValue;
+    private LiveData<List<String>> largestEntryCategoryName;
+    private LiveData<List<Integer>> largestEntryCategoryCount;
+    private LiveData<List<String>> largestEntrySubCategoryName;
+    private LiveData<List<Integer>> largestEntrySubCategoryCount;
+    private LiveData<List<String>> largestEntryDescriptionName;
+    private LiveData<List<Integer>> largestEntryDescriptionCount;
 
     public ReportsViewModel (Application application) {
         super(application);
@@ -39,24 +39,18 @@ public class ReportsViewModel extends AndroidViewModel {
     public LiveData<List<Expense>> getAllExpenses() {
         return expenses;
     }
-    public LiveData<String> getLargestExpenseName() {
+    public LiveData<List<String>> getLargestExpenseName() {
         return largestExpenseName;
     }
-    public LiveData<Double> getLargestExpenseValue() {
+    public LiveData<List<Double>> getLargestExpenseValue() {
         return largestExpenseValue;
     }
-    public LiveData<String> getLargestEntryCategoryName() { return largestEntryCategoryName; }
-    public LiveData<Integer> getLargestEntryCategoryCount() {
-        return largestEntryCategoryCount;
-    }
-    public LiveData<String> getLargestEntrySubCategoryName() {
-        return largestEntrySubCategoryName;
-    }
-    public LiveData<Integer> getLargestEntrySubCategoryCount() { return largestEntrySubCategoryCount; }
-    public LiveData<String> getLargestEntryDescriptionName() {
-        return largestEntryDescriptionName;
-    }
-    public LiveData<Integer> getLargestEntryDescriptionCount() { return largestEntryDescriptionCount; }
+    public LiveData<List<String>> getLargestEntryCategoryName() { return largestEntryCategoryName; }
+    public LiveData<List<Integer>> getLargestEntryCategoryCount() { return largestEntryCategoryCount; }
+    public LiveData<List<String>> getLargestEntrySubCategoryName() { return largestEntrySubCategoryName; }
+    public LiveData<List<Integer>> getLargestEntrySubCategoryCount() { return largestEntrySubCategoryCount; }
+    public LiveData<List<String>> getLargestEntryDescriptionName() { return largestEntryDescriptionName; }
+    public LiveData<List<Integer>> getLargestEntryDescriptionCount() { return largestEntryDescriptionCount; }
 
     public void insert(Expense expense) {
         reportsRepository.insert(expense);

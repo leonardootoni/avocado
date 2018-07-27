@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -38,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="112dp"
-        android:text="@string/textViewReport1"
+        android:text="The largest expense is: "
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,9 +46,9 @@
         android:id="@+id/textViewReport2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/textViewReport2"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="12dp"
+        android:text="at a value of:"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewReport1" />
@@ -60,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="28dp"
-        android:text="@string/textViewReport3"
+        android:text="Your most used category is:"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewReport2" />
@@ -69,20 +68,127 @@
         android:id="@+id/textViewReport4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/textViewReport4"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="12dp"
+        android:text="with          entries"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewReport3" />
 
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/recyclerview"-->
-        <!--android:layout_width="356dp"-->
-        <!--android:layout_height="280dp"-->
-        <!--android:layout_marginStart="24dp"-->
-        <!--android:layout_marginTop="208dp"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="@+id/separator"-->
-        <!--tools:listitem="@layout/recyclerview_item" />-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerviewLargeExpenseName"
+        android:layout_width="134dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="101dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewReport1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recyclerview_item" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerviewLargeExpenseValue"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="133dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewReport2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recyclerview_item" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewCategoryName"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="180dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewReport3"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recyclerview_item" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewCategoryCount"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="212dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recyclerview_item" />
+
+    <TextView
+        android:id="@+id/textViewReport5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:text="Your most used subcategory is:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReport4" />
+
+    <TextView
+        android:id="@+id/textViewReport6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="12dp"
+        android:text="with          entries"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReport5" />
+
+    <TextView
+        android:id="@+id/textViewReport7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:text="Your most recurrent expense is:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReport6" />
+
+    <TextView
+        android:id="@+id/textViewReport8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="12dp"
+        android:text="with          entries"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReport7" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewSubCategoryName"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="260dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewReport5"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recyclerview_item" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewSubCategoryCount"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="290dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recyclerview_item" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewDescriptionName"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="340dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewReport7"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recyclerview_item" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewDescriptionCount"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="370dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recyclerview_item" />
 
 </android.support.constraint.ConstraintLayout>

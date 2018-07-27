@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements DashBoardFragment
                     mTextMessage.setText(R.string.main_menu_notifications);
                     return true;
                 case R.id.navigation_reports:
-                    //mTextMessage.setText(R.string.main_menu_reports);
+                    mTextMessage.setText("");
                     fManager = getSupportFragmentManager();
                     fTransaction = fManager.beginTransaction();
 

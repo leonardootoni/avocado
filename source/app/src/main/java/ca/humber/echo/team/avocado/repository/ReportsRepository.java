@@ -33,35 +33,35 @@ public class ReportsRepository {
         return expenseDAO.getAllExpenses();
     }
 
-    public LiveData<String> getLargestExpenseName() {
+    public LiveData<List<String>> getLargestExpenseName() {
         return expenseDAO.getLargestExpenseName();
     }
 
-    public LiveData<Double> getLargestExpenseValue() {
+    public LiveData<List<Double>> getLargestExpenseValue() {
         return expenseDAO.getLargestExpenseValue();
     }
 
-    public LiveData<String> getLargestEntryCategoryName() {
+    public LiveData<List<String>> getLargestEntryCategoryName() {
         return expenseDAO.getLargestEntryCategoryName();
     }
 
-    public LiveData<Integer> getLargestEntryCategoryCount() {
+    public LiveData<List<Integer>> getLargestEntryCategoryCount() {
         return expenseDAO.getLargestEntryCategoryCount();
     }
 
-    public LiveData<String> getLargestEntrySubCategoryName() {
+    public LiveData<List<String>> getLargestEntrySubCategoryName() {
         return expenseDAO.getLargestEntrySubCategoryName();
     }
 
-    public LiveData<Integer> getLargestEntrySubCategoryCount() {
+    public LiveData<List<Integer>> getLargestEntrySubCategoryCount() {
         return expenseDAO.getLargestEntrySubCategoryCount();
     }
 
-    public LiveData<String> getLargestEntryDescriptionName() {
+    public LiveData<List<String>> getLargestEntryDescriptionName() {
         return expenseDAO.getLargestEntryDescriptionName();
     }
 
-    public LiveData<Integer> getLargestEntryDescriptionCount() {
+    public LiveData<List<Integer>> getLargestEntryDescriptionCount() {
         return expenseDAO.getLargestEntryDescriptionCount();
     }
 
